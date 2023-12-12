@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 const UserList = () => {
     const [users, setUsers] = useState([])
+    const [isLoading, setIsLoading] = useState(true)
     const {updateUser} = useContext(UserContext)
     const navigate = useNavigate()
 
@@ -15,27 +16,32 @@ const UserList = () => {
         getAllUsers()
         .then((allUsersArray) => {
             setUsers(allUsersArray)
+            setIsLoading(false)
         })
     }, [])
 
     const handleLogInClick = (username) => {
         updateUser(username)
-        navigate('/homepage')
+        navigate('/main')
         
     }
 
 
     return (
-        <>
-        {users.map((user) => {
-            return <UserCard
-            key={user.username}
-            user={user}
-            onClick={() => handleLogInClick(user.username)}
-            />
-        })}
-        </>
-    )
+        <div>
+            {isLoading ? (
+                <p>Loading Users...</p>
+            ) : (
+                users.map((user) => (
+                    <UserCard
+                        key={user.username}
+                        user={user}
+                        onClick={() => handleLogInClick(user.username)}
+                    />
+                ))
+            )}
+        </div>
+    );
 
 }
 

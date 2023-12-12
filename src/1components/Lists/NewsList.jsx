@@ -5,6 +5,7 @@ import { NewsCard } from "../Cards/NewsCard";
 
 const NewsList = () => {
     const [articles, setArticles] = useState([])
+    const [isLoading, setIsLoading] = useState(true)
 
 
 
@@ -13,6 +14,7 @@ useEffect(() => {
     .then((allArticlesArray) => {
         const sortedArticlesByDateCreated = [...allArticlesArray].sort((a, b) =>
         new Date(b.created_at) - new Date(a.created_at))
+        setIsLoading(false)
         setArticles(sortedArticlesByDateCreated)
     })
 }, [])
@@ -20,11 +22,16 @@ useEffect(() => {
 
 return (
     <div>
-        {articles.map((article) => {
-            return <NewsCard
-            key={article.title}
-            article={article}/>
-        })}
+        {isLoading ? (<p>Loading News List...</p>) : (
+            articles.map((article) => (
+                <NewsCard
+                key={article.title}
+                article={article}
+                />
+            ))
+
+        )}
+        
     </div>
 )
 
