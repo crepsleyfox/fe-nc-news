@@ -22,7 +22,7 @@ const UserList = () => {
 
     const handleLogInClick = (username) => {
         updateUser(username)
-        navigate('/main')
+        navigate('/home')
         
     }
 

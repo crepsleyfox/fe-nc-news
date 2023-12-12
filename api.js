@@ -19,3 +19,17 @@ export const getAllArticles = () => {
         return articles
     })
 }
+
+export const getArticleById = (article_id) => {
+   
+    
+    return fetch(`https://nc-news-hckw.onrender.com/api/articles/${article_id}`)
+    .then ((res) => {
+        return res.json()
+    })
+    .then((data) => {
+       
+        const articleById = data.articles
+        return articleById
+    })
+}
