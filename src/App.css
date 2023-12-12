@@ -4,3 +4,27 @@
   padding: 2rem;
   text-align: center;
 }
+
+.UserCard {
+  border: 1px solid black;
+  margin: 10px;
+  padding: 10px;
+  background-color: rgb(181, 181, 181)
+}
+
+.UserCardImage {
+  width: 100%;
+  height: auto;
+
+}
+
+.NewsCard {
+  border: 1px solid black;
+  margin: 10px;
+  padding: 10px;
+  background-color: rgb(181, 181, 181)
+}
+
+.NewsListList {
+  list-style-type: none;
+}
