@@ -9,6 +9,7 @@ const SingleArticleList = () => {
     const {article_id} = useParams()
     const [singleArticle, setSingleArticle] = useState(null)
     const [comments, setComments] = useState([])
+    const [isLoading, setIsLoading] = useState(true)
 
 
     useEffect(() => {
@@ -19,8 +20,14 @@ const SingleArticleList = () => {
         getCommentsByArticleId(article_id)
         .then((articleComments) => {
             setComments(articleComments)
+            setIsLoading(false)
         })
     }, [])
+
+    if (isLoading) {
+        return <p>loading comments...</p>
+    }
+
 
     if (singleArticle === null) {
         return <p>loading article...</p>
@@ -29,7 +36,7 @@ const SingleArticleList = () => {
     return (
         <div>
             <SingleArticleCard article={singleArticle}/>
-            <CommentsByArticleIdList comments={comments}/>
+            {comments.length > 0 && <CommentsByArticleIdList comments={comments}/>}
         </div>
     )
 }

@@ -1,43 +1,38 @@
+import axios from 'axios'
+
+
+const ncNews = axios.create({
+  baseURL: 'https://nc-news-hckw.onrender.com/api/',
+})
+
 export const getAllUsers = () => {
-  return fetch("https://nc-news-hckw.onrender.com/api/users")
+  return ncNews.get('users')
     .then((res) => {
-      return res.json();
-    })
-    .then((data) => {
-      const users = data.users;
+      const users = res.data.users;
       return users;
     });
 };
 
 export const getAllArticles = () => {
-  return fetch("https://nc-news-hckw.onrender.com/api/articles")
+  return ncNews.get('articles')
     .then((res) => {
-      return res.json();
-    })
-    .then((data) => {
-      const articles = data.articles;
+      const articles = res.data.articles;
       return articles;
     });
 };
 
 export const getArticleById = (article_id) => {
-  return fetch(`https://nc-news-hckw.onrender.com/api/articles/${article_id}`)
+  return ncNews.get(`articles/${article_id}`)
     .then((res) => {
-      return res.json();
-    })
-    .then((data) => {
-      const articleById = data.articles;
+      const articleById = res.data.articles;
       return articleById;
     });
 };
 
 export const getCommentsByArticleId = (article_id) => {
-    return fetch(`https://nc-news-hckw.onrender.com/api/articles/${article_id}/comments`)
-    .then((res)=> {
-        return res.json()
-    })
-    .then((data) => {
-        const commentsByArticleId = data.comments
+    return ncNews.get(`articles/${article_id}/comments`)
+    .then((res) => {
+        const commentsByArticleId = res.data.comments
         return commentsByArticleId
     })
 };
