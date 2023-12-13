@@ -5,8 +5,10 @@ export const Header = () => {
     const { user } = useContext(UserContext)
     return (
         <>
-            <h1>{ user } </h1>
-            <p>is logged in</p>
+            <p>logged in as </p>
+            <h2>{ user } </h2>
+            
+            
         </>
     )
 }
