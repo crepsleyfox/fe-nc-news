@@ -25,7 +25,7 @@
   background-color: rgb(181, 181, 181)
 }
 
-.NewsListList {
+.ListBulletRemoval {
   list-style-type: none;
 }
 
@@ -34,4 +34,24 @@
   margin: 10px;
   padding: 10px;
   background-color: rgb(181, 181, 181)
+}
+
+.SingleArticleCard {
+  border: 1px solid black;
+  margin: 10px;
+  padding: 10px;
+  background-color: rgb(181, 181, 181)
+}
+
+
+
+.CommentCard  {
+  border: 1px solid black;
+  margin: 10px;
+  padding: 10px;
+  background-color: rgb(181, 181, 181)
+}
+
+.spacer {
+  height: 20px;
 }

@@ -19,7 +19,7 @@ const App = () => {
 
   return (
     <UserProvider>
-       {isHomePage || isArticles && <Header />}
+       {(isHomePage || isArticles) && <Header />}
       <Routes>
         <Route path='/' element ={<SplashPage/>}/>
         <Route path='/login' element ={<LogInPage/>}/>

@@ -6,7 +6,7 @@ export const HomePage = () => {
     return (
         <div>
             <h1>HomePage</h1>
-            <ul className='NewsListList'>Latests News
+            <ul className='ListBulletRemoval'>Latests News
                 <li><NewsList/></li>
             </ul>
         </div>
