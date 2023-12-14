@@ -13,6 +13,8 @@ const SingleArticleList = () => {
   const [singleArticle, setSingleArticle] = useState(null);
   const [comments, setComments] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+  
 
   useEffect(() => {
     getArticleById(article_id).then((singleArticle) => {
@@ -24,14 +26,22 @@ const SingleArticleList = () => {
     });
   }, []);
 
-  const handleVote = (votes) => {
-    voteOnArticle(article_id, votes).then((updatedArtilceWithNewVotes) => {
+  const handleVote = (NewVotes) => {
+
+    setSingleArticle((singleArticle) => ({
+        ...singleArticle, votes: singleArticle.votes + NewVotes,
+    }))
+    setError(null);
+
+    voteOnArticle(article_id, NewVotes)
+    .catch((error) => {
       setSingleArticle((singleArticle) => ({
-        ...singleArticle,
-        votes: updatedArtilceWithNewVotes.votes,
-      }));
+        ...singleArticle, votes: singleArticle.votes - NewVotes,
+      }))
+      setError("Something went wrong. Try again");
     });
   };
+
   if (isLoading) {
     return <p>loading comments...</p>;
   }
@@ -43,6 +53,7 @@ const SingleArticleList = () => {
   return (
     <div>
       <SingleArticleCard article={singleArticle} onClick={handleVote} />
+      {error ? <p>{error}</p> : null}
       {comments.length > 0 && <CommentsByArticleIdList comments={comments} />}
     </div>
   );
