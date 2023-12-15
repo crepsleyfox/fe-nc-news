@@ -9,3 +9,8 @@ export const LogInPage = () => {
         </div>
     )
 }
+
+
+
+// double posting by furios clicking
+// can we save event.input text for the redirect
